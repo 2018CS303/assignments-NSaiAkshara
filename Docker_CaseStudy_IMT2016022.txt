@@ -1,0 +1,80 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh18000\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b\fs48 \cf0 \ul \ulc0 								
+\fs72 Docker Case Study - Assignment_3
+\b0\fs48 \
+\ulnone \
+The following are the steps:\
+\
+
+\b 1.\ul Creating the user\'92s list in a text file\ulnone :\
+
+\b0     -> username.txt\
+\
+    user1\
+    user2\
+    user3\
+    user4\
+    user5\
+\
+\
+
+\b \ul 2.Creating docker container for each user:\
+
+\b0 \ulnone     -> create_container\
+\
+  The following shell script creates a docker container for each user:\
+    \
+	echo -n \'93Please enter file name:\'94\
+    read filename\
+    while read username\
+    		do\
+        		docker create -it \'97name $username docker_image/bin/bash\
+      	done < $filename\
+\
+\
+
+\b \ul 3.Using allocated containers:\
+
+\b0 \ulnone     -> use_container.sh\
+\
+  The following shell script allocates the docker container :\
+    \
+	echo -n \'93Name of the container is :\'94\
+    read name\
+    docker start $name\
+    docker attach $name\
+\
+\
+
+\b \ul 4.Monitoring the container:\
+
+\b0 \ulnone     -> monitor_container.sh\
+\
+  The following shell script monitors the docker container :\
+    \
+	echo -n \'93Username of the container to monitor is:\'94\
+    read username\
+    docker logs -f $username\
+\
+\
+
+\b \ul 5.Deleting the container:\
+
+\b0 \ulnone     -> delete_container.sh\
+\
+  The following shell script deletes the docker container :\
+    \
+	echo -n \'94File name is :\'94\
+    read filename\
+    while read username\
+      	do\
+        		docker stop $username\
+        		docker rm $username\
+      	done < $filename\
+}
